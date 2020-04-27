@@ -29,7 +29,7 @@ function hurdleRace(k, height) {
     // Set minDoses at zero as its starting point.
     let minDoses = 0;
 
-    // Loop through the height array to see what the minimum number of doses Dan must        take to be able to clear all the hurdles in the race.
+    // Loop through the height array to see what the minimum number of doses Dan must take to be able to clear all the hurdles in the race.
     for (let i = 0; i < height.length; i++) {
         // if the max. height that Dan can jump is less than the current height, we are going to add to the minDoses.
         if (k < height[i]) {
