@@ -14,11 +14,11 @@ import sys
 
 
 # HIGH LEVEL PROBLEM EXPLANATION:
-    # Given a list of queries, where each query is in the form of x and y values. The number 1 in the x value represents insertion into your data structure, and the number 2 in the x value represents deletion, if a number is present, from the data structure. The number 3 in the x value checks if the number in the y axis matches the amount of times a number appears in the data structure. If it does appear the correct number of times in the data structure then return a '1' in the output list and if not, return a '0' in the output list. The goal is to return the output list of 0s and 1s.
+    # Given a list of queries, where each query is in the form of x and y values. There are 3 types queries: Insertion, deleteion, and reoccurance. The goal is to check if any number is present whose frequency is exactly z. If it is, print 1, if not, print 0. Then we return the list of 0s and 1s.
 
 
 # HIGH LEVEL SOLUTION:
-    # ​Look through the queries list, checking if the x axis value for each query is a 1, 2, or 3. If it is 1, add the value in the 1st dictionary, and add the value for the given key in the 2nd dictionary. If it is 2, subtract the value in the 1st dictionary and subtract the value for the given key in the 2nd dictionary. If it is 3, check if the key of the 2nd dictionary is present and if the value is greater than 0, if it is, add 1 to the results list, otherwise add 0 to the results list. In the end return the results list.
+    # ​Look through the queries list, checking if the 1st index for each query is a 1, 2, or 3. If it is a 1, then we add the value in the 1st dictionary, and add the value for the given key in the 2nd dictionary. If it is a 2, remove the value in the 1st dictionary and remove the value for the given key in the 2nd dictionary. If it is a 3, check if the key of the 2nd dictionary is present and if the value is greater than 0, add a 1 to the results list, otherwise add 0 to the results list.  Return the results list.
 
 # SOLUTION:
     # Step 1: Create a frequency dictionary to track the key value pairs of the frequencies of each number
@@ -29,6 +29,8 @@ import sys
     # Step 6: Check if the x axis element in the query is set to 2, if it is, decrement the value, if it exists, in the 1st dictionary (frequency) setting to 0 so it can't go to a negative integer, and decrement the value for the given key in the 2nd dictionary (frequencyValues)
     # Step 7: Check if the x axis element in the query is set to 3, if it is, check if the key of the 2nd dictionary is present and if it is, check its value to see if it is greater than 0, if it is, add 1 to the results array, otherwise add 0 to the results array.
     # Step 8: Return the results array.
+
+# The Runtime: 
 
 def frequencyQueries(queries):
     # Create a frequency dictionary to track the key value pairs of the frequencies of each number
@@ -43,14 +45,15 @@ def frequencyQueries(queries):
         q = query[0]
         val = query[1]
 
-        # Check if the x axis element in the query is set to 1, if it is, increment the value if it exists in the 1st dictionary (frequency), and increment the value for the given key in the 2nd dictionary (frequencyValues)
+        # Check if the 1st index in the query is set to 1, if it is, increment the value if it exists in the 1st dictionary (frequency), and increment the value for the given key in the 2nd dictionary (frequencyValues)
         if q == 1:
             frequency[val] = frequency.get(val, 0) + 1
             freq = frequency[val]
             frequencyValues[freq] = frequencyValues.get(freq, 0) + 1
             frequencyValues[freq-1] = frequencyValues.get(freq-1, 1) - 1
 
-        # Check if the x axis element in the query is set to 2, if it is, decrement the value, if it exists, in the 1st dictionary (frequency) setting to 0 so it can't go to a negative integer, and decrement the value for the given key in the 2nd dictionary (frequencyValues)
+        # Check if the 1st index in the query is set to 2, if it is, decrement the value if it exists in the 1st dictionary(frequency) and then decrement the value for the given key in the 2nd dictionary (frequencyValues).
+        # If the value in the 1st dictionary is less than 0, then set it to 0 so it can't go to a negative integer.
         elif q == 2:
             if val in frequency:
                 freq = frequency[val]
@@ -63,7 +66,7 @@ def frequencyQueries(queries):
 
                     frequency[val] = 0
 
-        # Check if the x axis element in the query is set to 3, if it is, check if the key of the 2nd dictionary is present and if it is, check its value to see if it is greater than 0, if it is, add 1 to the results array, otherwise add 0 to the results array.
+        # Check if the 1st index in the query is set to 3, if it is, check if the key of the 2nd dictionary is present and if it is, check its value to see if it is greater than 0, if it is, add 1 to the results array, otherwise add 0 to the results array.
         elif q == 3:
             if val in frequencyValues.keys():
                 if frequencyValues[val] > 0:
