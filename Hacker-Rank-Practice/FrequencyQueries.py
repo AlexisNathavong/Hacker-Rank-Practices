@@ -33,6 +33,8 @@ import sys
 # The Runtime: O(n) because the for loop is linear and the if statements are constants. 
 # The for loop is O(n) and each if statements are O(1). 
 
+# One way to make this a slower runtime: we could store all those key: value pairs in an array of tuples if you wanted, but then for lookup you'd have to loop over that array, which is a slower runtime than lookup in a dict.
+
 def frequencyQueries(queries):
     # Create a frequency dictionary to track the key value pairs of the frequencies of each number
     frequency = {}

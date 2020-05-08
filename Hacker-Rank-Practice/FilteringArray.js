@@ -1,7 +1,6 @@
 // Problem:
-// We are given a list of frequencies and a list of filter ranges. Our goal is to 
-// determine how many of our given frequencies will pass through all of these 
-// filters successfully.
+// We are given a list of frequencies and a list of filter ranges. Our goal is to: 
+// determine how many of our given frequencies will pass through all of these filters successfully.
 
 // FIRST-PASS SOLUTION
 
@@ -60,8 +59,10 @@ function countSignals(frequencies, filterRanges) {
 // Loop through the frequencies and check each against this overlap range.
 
 // Step by step:
-// 1. Define a counter to track how many frequencies can pass all filters
 // 2. Define the overlap range, initialize it to the first filter range in the array
+
+// 1. Define a counter to track how many frequencies can pass all filters
+
 // 3. Use a for-loop to check the remaining filter ranges against the overlap range
     // if the lower bound in a range is larger than that of the overlap range:
         // replace overlap range lower bound with this new value

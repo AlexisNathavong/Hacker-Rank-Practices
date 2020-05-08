@@ -41,3 +41,33 @@ def equalizeArray(arr):
 
     # Return the min number of deletions by subtracting the largest value from the length of the original array.
     return (len(arr) - Elements[max_val])
+
+
+## Faster Runtime solution:
+
+def equalizeArray(arr):
+  # variable tracking how many times the most-used value appears in arr
+  maxDuplicates = 0
+
+  # dict for storing how many times each value appears in arr
+  Elements = {}
+​
+  # loop through arr
+  for i in arr:
+    # if i is not in our dict, it means we haven't encountered it yet
+    if i not in Elements:
+      # so we make the value 1 in the dict
+      Elements[i] = 1
+    # if we HAVE encountered it  
+    else:
+      # increase the counter in the dict
+      Elements[i] += 1
+​
+    # check to see if our new value in the dict is bigger than maxDuplicates
+    # if it is, that means this value in arr is (for now) more frequent than other values
+    if Elements[i] > maxDuplicates:
+      # so we assign maxDuplicates to this new counter value
+      maxDuplicates = Elements[i]
+  
+  # the minimum number of deletions is going to equal the length of the array minus the number of times the most common value appears
+  return len(arr) - maxDuplicates
