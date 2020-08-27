@@ -21,7 +21,7 @@
 function solution(A) {
     // A = the given array
     // N = number of integers
-    // Goal: We need to return the smallest positive integer, greater than 0, that does not appear in the array.
+    // Goal: We need to return the smallest positive integer, greater than 0, that does not appear in the array. testing. 
     
     let length = A.length;
     let array = Array(length).fill(false);
